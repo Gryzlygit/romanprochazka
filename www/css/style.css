@@ -1,0 +1,17 @@
+div.flash {
+    color: black;
+    background: #FFF9D7;
+    border: 3px solid #E2C822;
+    font-size: 150%;
+    padding: 0.3em;
+    margin: 15px;
+    border-radius: 5px;
+}
+
+form table tr td input, select, textarea {
+    width: 100%;
+}
+
+#navigation{
+    margin-bottom: 10px;
+}

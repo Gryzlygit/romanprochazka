@@ -1,0 +1,8 @@
+parameters:
+	dbPrefix: 'taskapp'
+	fakeEmailSend: false
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=taskapp'
+	user: 'root'
+	password: ''

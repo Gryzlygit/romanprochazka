@@ -1,0 +1,7 @@
+env/local.neon
+log
+temp
+nbproject
+.idea
+vendor
+www/fontawesome
