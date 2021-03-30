@@ -5,3 +5,4 @@ nbproject
 .idea
 vendor
 www/fontawesome
+files/tokens/*
