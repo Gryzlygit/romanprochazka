@@ -68,21 +68,22 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
         }
 
         $result = json_decode($resultJson);
-        bdump($result);
-        var_dump($result->access_token);
+        //bdump($result);
+        //var_dump($result->access_token);
 
 
 
 
 
-        $url = 'https://api.accounting.sage.com/v3.1/sales_invoices?from_date=2021-01-29';
-        $data = ['access_token' => $result->access_token];
+        $url = 'https://api.accounting.sage.com/v3.1/sales_quick_entries';
+        //$data = ['access_token' => $result->access_token];
 
         $options = array(
             'http' => array(
-                'header' => "Content-type: application/x-www-form-urlencoded",
-                'method' => 'POST',
-                'content' => http_build_query($data)
+                //'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'header' => "Authorization: Bearer ".$result->access_token,
+                'method' => 'GET',
+                //'content' => http_build_query($data)
             )
         );
         $context = stream_context_create($options);
@@ -90,9 +91,10 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
         if ($resultJson === FALSE) {
         }
 
+        bdump($resultJson);
         $result = json_decode($resultJson);
         bdump($result);
-        var_dump($result);
+        dump($result);
         die;
     }
 
