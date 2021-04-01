@@ -44,21 +44,20 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
         $url = 'https://api.accounting.sage.com/v3.1/sales_quick_entries';
         $accessToken = file_get_contents($this->savePath . 'access_token_sage.txt');
         $data = [
-            'quick_entry_type_id' => 'Cargo',
-            'date' => '25/02/2021 21:17:46',
-            'contact_id' => 'f_epos',
-            'reference' => 'Epos Now',
-            'ledger_account_id' => '',
+            1 => ['quick_entry_type_id' => 'Cargo',
+                'date' => '31/03/2021',
+                'contact_id' => 'f_epos',
+                'reference' => 'Epos Now',
+                'ledger_account_id' => '',]
         ];
 
         $options = array(
             'http' => array(
-                'header' => [
-                    "Authorization: Bearer " . $accessToken,
-                    "Content-type: application/x-www-form-urlencoded",
-                ],
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n" .
+                "Authorization: Bearer " . $accessToken . "\r\n",
                 'method' => 'POST',
-                'content' => http_build_query($data)
+                'content' => http_build_query($data),
+            //'sales_quick_entry' => http_build_query($data),
             )
         );
         $context = stream_context_create($options);
@@ -100,7 +99,7 @@ class HomepagePresenter extends Nette\Application\UI\Presenter {
         $result = json_decode($resultJson);
         file_put_contents($this->savePath . 'access_token_sage.txt', $result->access_token);
         file_put_contents($this->savePath . 'refresh_token.txt', $result->refresh_token);
-        $this->flashMessage('tokeny ulozeny');
+        $this->flashMessage('tokens saved');
         $this->redirect('sage');
     }
 
